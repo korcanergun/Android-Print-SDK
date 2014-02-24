@@ -169,6 +169,7 @@ public class CheckoutActivity extends Activity {
         } catch (JSONException ex) {/* ignore */}
         printOrder.setUserData(userData);
         printOrder.setNotificationEmail(email);
+        printOrder.setNotificationPhoneNumber(phone);
 
         SharedPreferences settings = getSharedPreferences(SHIPPING_PREFERENCES, 0);
         SharedPreferences.Editor editor = settings.edit();
