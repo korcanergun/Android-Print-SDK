@@ -43,6 +43,7 @@ import co.oceanlabs.pssdk.R;
 import co.oceanlabs.pssdk.payment.PayPalCard;
 import co.oceanlabs.pssdk.payment.PayPalCardChargeListener;
 import co.oceanlabs.pssdk.payment.PayPalCardVaultStorageListener;
+import co.oceanlabs.pssdk.psprintstudio.FontUtils;
 import io.card.payment.CardIOActivity;
 import io.card.payment.CreditCard;
 
@@ -118,10 +119,12 @@ public class PaymentActivity extends Activity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (this.paypalEnvironment == PayPalCard.Environment.SANDBOX) {
-            getActionBar().setTitle("Payment (Sandbox)");
+            setTitle("Payment (Sandbox)");
         } else {
-            getActionBar().setTitle("Payment");
+            setTitle("Payment");
         }
+
+        setTitle(FontUtils.spanMissionScript(this, getTitle()));
     }
 
     @Override

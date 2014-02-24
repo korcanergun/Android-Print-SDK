@@ -25,6 +25,7 @@ import co.oceanlabs.pssdk.PrintOrder;
 import co.oceanlabs.pssdk.R;
 import co.oceanlabs.pssdk.address.Address;
 import co.oceanlabs.pssdk.address.AddressBookActivity;
+import co.oceanlabs.pssdk.psprintstudio.FontUtils;
 
 public class CheckoutActivity extends Activity {
 
@@ -51,6 +52,7 @@ public class CheckoutActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
+        setTitle(FontUtils.spanMissionScript(this, getTitle()));
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()

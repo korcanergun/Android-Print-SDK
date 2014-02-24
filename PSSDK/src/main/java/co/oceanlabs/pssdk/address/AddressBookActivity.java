@@ -26,6 +26,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import co.oceanlabs.pssdk.R;
+import co.oceanlabs.pssdk.psprintstudio.FontUtils;
 
 public class AddressBookActivity extends Activity {
 
@@ -38,6 +39,7 @@ public class AddressBookActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address_book);
+        setTitle(FontUtils.spanMissionScript(this, getTitle()));
 
         addressBookAdapter = new AddressBookAdapter();
         addressBookAdapter.setAddresses(Address.getAddressBook(this));

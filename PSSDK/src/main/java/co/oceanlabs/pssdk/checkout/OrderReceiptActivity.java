@@ -24,6 +24,7 @@ import android.widget.TextView;
 import co.oceanlabs.pssdk.PrintOrder;
 import co.oceanlabs.pssdk.PrintOrderSubmissionListener;
 import co.oceanlabs.pssdk.R;
+import co.oceanlabs.pssdk.psprintstudio.FontUtils;
 
 public class OrderReceiptActivity extends Activity {
 
@@ -35,6 +36,7 @@ public class OrderReceiptActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_receipt);
+        setTitle(FontUtils.spanMissionScript(this, getTitle()));
 
         this.printOrder = (PrintOrder) getIntent().getParcelableExtra(EXTRA_PRINT_ORDER);
 

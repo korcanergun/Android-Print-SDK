@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Locale;
 
 import co.oceanlabs.pssdk.R;
+import co.oceanlabs.pssdk.psprintstudio.FontUtils;
 
 public class AddressEditActivity extends Activity {
 
@@ -45,6 +46,8 @@ public class AddressEditActivity extends Activity {
         } else {
             setTitle(R.string.title_activity_address_edit);
         }
+
+        setTitle(FontUtils.spanMissionScript(this, getTitle()));
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
