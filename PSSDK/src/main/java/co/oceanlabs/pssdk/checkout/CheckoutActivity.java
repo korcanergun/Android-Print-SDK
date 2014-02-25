@@ -25,6 +25,7 @@ import co.oceanlabs.pssdk.PrintOrder;
 import co.oceanlabs.pssdk.R;
 import co.oceanlabs.pssdk.address.Address;
 import co.oceanlabs.pssdk.address.AddressBookActivity;
+import co.oceanlabs.pssdk.psprintstudio.Analytics;
 import co.oceanlabs.pssdk.psprintstudio.FontUtils;
 
 public class CheckoutActivity extends Activity {
@@ -70,6 +71,10 @@ public class CheckoutActivity extends Activity {
 
         if (printOrder == null) {
             throw new IllegalArgumentException("You must specify a PrintOrder object extra in the intent used to start the CheckoutActivity");
+        }
+
+        if (printOrder.getJobs().size() < 1) {
+            throw new IllegalArgumentException("You must specify a PrintOrder object extra that actually has some jobs for printing i.e. PrintOrder.getJobs().size() > 0");
         }
 
         PSPrintSDK.Environment env = PSPrintSDK.Environment.LIVE;
@@ -176,6 +181,8 @@ public class CheckoutActivity extends Activity {
         editor.putString(SHIPPING_PREFERENCE_EMAIL, email);
         editor.putString(SHIPPING_PREFERENCE_PHONE, phone);
         editor.commit();
+
+        Analytics.trackShippingDetailsSupplied(this, environment, printOrder);
 
         Intent i = new Intent(this, PaymentActivity.class);
         i.putExtra(PaymentActivity.EXTRA_PRINT_ORDER, (Parcelable) printOrder);

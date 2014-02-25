@@ -43,6 +43,7 @@ import co.oceanlabs.pssdk.R;
 import co.oceanlabs.pssdk.payment.PayPalCard;
 import co.oceanlabs.pssdk.payment.PayPalCardChargeListener;
 import co.oceanlabs.pssdk.payment.PayPalCardVaultStorageListener;
+import co.oceanlabs.pssdk.psprintstudio.Analytics;
 import co.oceanlabs.pssdk.psprintstudio.FontUtils;
 import io.card.payment.CardIOActivity;
 import io.card.payment.CreditCard;
@@ -307,6 +308,8 @@ public class PaymentActivity extends Activity {
         printOrder.setProofOfPayment(proofOfPayment);
         printOrder.saveToHistory(this);
 
+        Analytics.trackPaymentCompleted(this, printEnvironment, printOrder);
+
         final ProgressDialog dialog = new ProgressDialog(this);
         dialog.setCancelable(false);
         dialog.setIndeterminate(false);
@@ -332,6 +335,8 @@ public class PaymentActivity extends Activity {
                 if (Looper.myLooper() != Looper.getMainLooper()) throw new AssertionError("Should be calling back on the main thread");
                 printOrder.saveToHistory(PaymentActivity.this);
                 dialog.dismiss();
+
+                Analytics.trackOrderSubmission(PaymentActivity.this, printEnvironment, printOrder);
                 Intent i = new Intent(PaymentActivity.this, OrderReceiptActivity.class);
                 i.putExtra(OrderReceiptActivity.EXTRA_PRINT_ORDER, (Parcelable) printOrder);
                 startActivityForResult(i, REQUEST_CODE_RECEIPT);
@@ -342,8 +347,8 @@ public class PaymentActivity extends Activity {
                 if (Looper.myLooper() != Looper.getMainLooper()) throw new AssertionError("Should be calling back on the main thread");
                 printOrder.saveToHistory(PaymentActivity.this);
                 dialog.dismiss();
-                //showErrorDialog(error.getMessage());
 
+                Analytics.trackOrderSubmission(PaymentActivity.this, printEnvironment, printOrder);
                 Intent i = new Intent(PaymentActivity.this, OrderReceiptActivity.class);
                 i.putExtra(OrderReceiptActivity.EXTRA_PRINT_ORDER, (Parcelable) printOrder);
                 startActivityForResult(i, REQUEST_CODE_RECEIPT);
