@@ -23,11 +23,7 @@
             <Button android:id="@+id/button_apply_promo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0" android:text="Apply" android:background="@null" android:enabled="false" android:onClick="onButtonApplyClicked" android:textColor="@color/apply_button"  />
         </LinearLayout>
 
-
-        <Button android:id="@+id/button_pay_with_credit_card" android:layout_width="match_parent" android:layout_height="wrap_content"  android:layout_below="@id/container_promo_code" android:layout_marginTop="30dp" android:text="Pay with Credit Card" android:onClick="onButtonPayWithCreditCardClicked"
-            android:background="#8eae4d"
-            android:textColor="#ffffff" />
-        <Button android:id="@+id/button_pay_with_paypal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_below="@id/button_pay_with_credit_card" android:text="Pay with PayPal" android:onClick="onButtonPayWithPayPalClicked"
+        <Button android:id="@+id/button_pay_with_paypal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_below="@id/container_promo_code" android:text="Pay with PayPal" android:onClick="onButtonPayWithPayPalClicked"
             android:background="#286db3"
             android:textColor="#ffffff" android:layout_marginTop="10dp" />
 

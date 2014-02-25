@@ -369,13 +369,11 @@ public class PaymentActivity extends Activity {
             applyButton.setText("Apply");
         }
 
-        Button payWithCreditCardButton = (Button) findViewById(R.id.button_pay_with_credit_card);
+        Button payButton = (Button) findViewById(R.id.button_pay_with_paypal);
         if (printOrder.getCost().compareTo(BigDecimal.ZERO) <= 0) {
-            findViewById(R.id.button_pay_with_paypal).setVisibility(View.GONE);
-            payWithCreditCardButton.setText("Checkout for Free!");
+            payButton.setText("Checkout for Free!");
         } else {
-            findViewById(R.id.button_pay_with_paypal).setVisibility(View.VISIBLE);
-            payWithCreditCardButton.setText("Pay with Credit Card");
+            payButton.setText("Pay with PayPal");
         }
     }
 
