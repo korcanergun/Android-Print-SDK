@@ -57,14 +57,10 @@ public class AddressSearchActivity extends Activity implements ActionBar.OnNavig
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 
         // Set up the dropdown list navigation in the action bar.
-        actionBar.setListNavigationCallbacks(
-                // Specify a SpinnerAdapter to populate the dropdown list.
-                new ArrayAdapter<Country>(
-                        this,
-                        R.layout.country_spinner_item,
-                        android.R.id.text1,
-                        Country.COUNTRIES),
-                this);
+        ArrayAdapter<Country> adapter = new ArrayAdapter<Country>(
+                this, R.layout.country_spinner_item, android.R.id.text1, Country.COUNTRIES);
+        adapter.setDropDownViewResource(R.layout.country_spinner_dropdown_item);
+        actionBar.setListNavigationCallbacks(adapter, this);
 
         int selected = Country.COUNTRIES.indexOf(Country.getInstance(Locale.getDefault()));
         actionBar.setSelectedNavigationItem(selected);
