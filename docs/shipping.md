@@ -58,7 +58,7 @@ Sample Code
 
     ```java
     PrintOrder order = ...;
-    printOrder.setShippingAddress(addr);
+    order.setShippingAddress(addr);
     ```
 
 Next Steps
