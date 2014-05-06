@@ -10,16 +10,19 @@ If you don't want to use or customize the provided experience you can [build you
 _If you haven't already, see the [README](../README.md) for an initial overview and instructions for adding the SDK to your project._
 
 
+Prerequisites
+--------
+1. [Create a print order](create_print_order.md) representing the product(s) you wish to have printed and posted
+
 Overview
 --------
-1. Create a `PrintOrder` containing details of the product(s) you want to print
-2. Create and start a `CheckoutActivity` passing it the `PrintOrder` object you created in Step 1
-3. Handle the `CheckoutActivity` result
+1. Create and start a `CheckoutActivity` passing it the `PrintOrder` object you created in the Prerequisite Step 1
+2. Handle the `CheckoutActivity` result
 
 Sample Code
 -----------
-1. See [Creating a Print Order](create_print_order.md) for details on creating the `PrintOrder`
-2. Create and start a `CheckoutActivity` passing it the `PrintOrder` object you created in Step 1
+
+1. Create and start a `CheckoutActivity` passing it the `PrintOrder` object you created in the Prerequisite Step 1
 
     ```java
     // SomeActivity.java
@@ -31,7 +34,7 @@ Sample Code
         startActivityForResult(intent, REQUEST_CODE_CHECKOUT);
     }
     ```
-3. Handle the `CheckoutActivity` result
+2. Handle the `CheckoutActivity` result
 
     ```java
     // Elsewhere in SomeActivity.java
