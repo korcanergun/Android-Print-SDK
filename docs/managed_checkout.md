@@ -5,9 +5,9 @@ The Kite Android Print SDK includes a robust checkout and payment experience tha
 
 This is the quickest approach to integration and perfect if you don't want to spend any time building a custom checkout experience.
 
-If you don't want to use or customize the provided experience you can [build your own custom checkout UI](../README.md#).
+If you don't want to use or customize the provided experience you can [build your own custom checkout UI](../README.md#custom-checkout).
 
-_If you haven't already, see the [README](../README.md#Custom-Checkout) for an initial overview and instructions for adding the SDK to your project._
+_If you haven't already, see the [README](../README.md) for an initial overview and instructions for adding the SDK to your project._
 
 
 Overview
@@ -51,4 +51,4 @@ Next Steps
 ----------
 
 - That's all there is to it from an integration perspective! Submitted print orders will appear in the [developer dashboard](https://developer.psilov.eu/). You'll also need to register your payment details with us in the dashboard so that we can pay you when your users place orders.
-- Alternatively you can [build your own custom checkout UI](../README.md#Custom-Checkout) for complete control of the checkout and payment process.
+- Alternatively you can [build your own custom checkout UI](../README.md#custom-checkout) for complete control of the checkout and payment process.
