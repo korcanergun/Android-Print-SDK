@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="co.oceanlabs.pssdk.checkout.PaymentActivity$PlaceholderFragment">
+    tools:context="co.oceanlabs.kite.checkout.PaymentActivity$PlaceholderFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"

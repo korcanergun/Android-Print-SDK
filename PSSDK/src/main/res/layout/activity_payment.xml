@@ -3,5 +3,5 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="co.oceanlabs.pssdk.checkout.PaymentActivity"
+    tools:context="co.oceanlabs.kite.checkout.PaymentActivity"
     tools:ignore="MergeRootFrame" />
