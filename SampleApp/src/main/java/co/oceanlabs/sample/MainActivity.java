@@ -18,6 +18,7 @@ import ly.kite.print.KitePrintSDK;
 import ly.kite.print.PrintJob;
 import ly.kite.print.PrintOrder;
 import ly.kite.checkout.CheckoutActivity;
+import ly.kite.print.ProductType;
 
 public class MainActivity extends Activity {
 
@@ -51,7 +52,7 @@ public class MainActivity extends Activity {
         } catch (Exception ex) {}
 
         PrintOrder printOrder = new PrintOrder();
-        printOrder.addPrintJob(PrintJob.createPrintJob(assets,"magnets"));
+        printOrder.addPrintJob(PrintJob.createPrintJob(assets, "magnets"));
 
         Intent intent = new Intent(this, CheckoutActivity.class);
         intent.putExtra(CheckoutActivity.EXTRA_PRINT_ORDER, (Parcelable) printOrder);
@@ -73,6 +74,8 @@ public class MainActivity extends Activity {
 //
 //                }
 //            }
+
+
         }
     }
 

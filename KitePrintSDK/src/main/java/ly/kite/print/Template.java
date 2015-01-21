@@ -150,7 +150,6 @@ public class Template  implements Parcelable, Serializable {
     public static String getSupportedCurrency(){
 
             String userCurrencyCode = KitePrintSDK.getUserCurrencyCode();
-
             if(userCurrencyCode.equals("GBP")) {
                 return userCurrencyCode;
 
@@ -170,21 +169,15 @@ public class Template  implements Parcelable, Serializable {
             } else {
                 return "GBP";
             }
-
-
     }
 
     public static PayPalCard.Currency getPayPalCurrency(){
 
         String userCurrencyCode = getSupportedCurrency();
-
-
         if(userCurrencyCode.equals("GBP")) {
             return PayPalCard.Currency.GBP;
-
         }else if(userCurrencyCode.equals("EUR")){
             return PayPalCard.Currency.EUR;
-
         }else if(userCurrencyCode.equals("USD")){
             return PayPalCard.Currency.USD;
         }else if(userCurrencyCode.equals("SGD")){
