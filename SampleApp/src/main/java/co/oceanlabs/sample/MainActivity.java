@@ -19,6 +19,7 @@ import ly.kite.print.PrintJob;
 import ly.kite.print.PrintOrder;
 import ly.kite.checkout.CheckoutActivity;
 import ly.kite.print.ProductType;
+import ly.kite.ui.ProductSelectionActivity;
 
 public class MainActivity extends Activity {
 
@@ -36,10 +37,14 @@ public class MainActivity extends Activity {
     }
 
     public void onGalleryButtonClicked(View view) {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
+//        Intent intent = new Intent();
+//        intent.setType("image/*");
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
+
+        Intent intent = new Intent(this, ProductSelectionActivity.class);
+        startActivity(intent);
+
     }
 
     public void onCheckoutButtonClicked(View view) {

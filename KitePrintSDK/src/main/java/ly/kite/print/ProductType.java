@@ -20,7 +20,6 @@ public enum ProductType {
 
 
     //New Frames
-
     FRAMES_20(12, "frames_20cm","Frame 20cm"),
     FRAMES_30(12, "frames_30cm","Frame 30cm"),
     FRAMES_50(12, "frames_50cm","Frame 50cm"),
