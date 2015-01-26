@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ly.kite.ui.ProductDescriptionActivity">
+    <ViewPager
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/product_viewpager">
+
+        </ViewPager>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="#ffffed4e"
+            android:text="£ 4.00"
+            android:id="@+id/description_price_textview"
+            android:gravity="center_vertical|center_horizontal"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:textSize="17dp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="#ff6b98ff"
+            android:text="Pack of 10 \n 2.5 x 2.5 stickers"
+            android:id="@+id/description_summary_textview"
+            android:gravity="center_vertical|center_horizontal"
+            android:textColor="@android:color/white"
+            android:textSize="12dp"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="#ff6aff9a"
+            android:gravity="center_vertical|center_horizontal"
+            android:textColor="@android:color/white"
+            android:textSize="14dp"
+            android:text="Free postage"
+            android:id="@+id/description_postage_textview" />
+
+        </LinearLayout>
+
+
+
+    <!--<com.viewpagerindicator.UnderlinePageIndicator-->
+        <!--android:id="@+id/indicator"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="5dp" />-->
+
+
+</RelativeLayout>
