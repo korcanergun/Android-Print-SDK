@@ -11,7 +11,9 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import ly.kite.address.Address;
 
@@ -21,19 +23,8 @@ import ly.kite.address.Address;
 class PrintsPrintJob extends PrintJob {
 
     private static final long serialVersionUID = 0L;
-
-
     private ProductType productType;
     private List<Asset> assets;
-
-    //Postcard Specific
-    private boolean isPostCard;
-    private Address postCardAddress;
-    private String location1, location2;
-    private String message;
-
-
-
     private String templateId;
 
 
@@ -41,28 +32,26 @@ class PrintsPrintJob extends PrintJob {
         this.templateId = templateId;
         this.productType = ProductType.productTypeFromTemplate(templateId);
         this.assets = assets;
-        this.isPostCard = false;
-    }
-
-    public PrintsPrintJob(String templateId, List<Asset> assets, String message , Address address, String location1, String location2){
-        this.templateId = templateId;
-        this.productType = ProductType.productTypeFromTemplate(templateId);
-        this.assets = assets;
-        this.isPostCard = true;
-        this.postCardAddress = address;
-        this.location1 = location1;
-        this.location2 = location2;
-        this.message = message;
-
     }
 
     @Override
-    public BigDecimal getCost() {
-        int imagesPerSheet = Template.getSyncedTemplateNumberOfImages(templateId);
-        if (imagesPerSheet == 0) imagesPerSheet = 1;
-        BigDecimal cost = new BigDecimal(Template.getCostForTemplate(templateId));
-        int numOrders = ((assets.size() + (imagesPerSheet - 1))/ imagesPerSheet);
-        return cost.multiply(new BigDecimal(numOrders));
+    public BigDecimal getCost(String currencyCode) {
+        Template template = Template.getTemplate(templateId);
+        BigDecimal sheetCost = template.getCost(currencyCode);
+        int expectedQuantity = template.getQuantityPerSheet();
+
+        int numOrders = (int) Math.floor((getQuantity() + expectedQuantity - 1) / expectedQuantity);
+        return sheetCost.multiply(new BigDecimal(numOrders));
+    }
+
+    @Override
+    public Set<String> getCurrenciesSupported() {
+        Template template = Template.getTemplate(templateId);
+        if (template == null) {
+            return Collections.EMPTY_SET;
+        }
+
+        return template.getCurrenciesSupported();
     }
 
     @Override
@@ -81,38 +70,27 @@ class PrintsPrintJob extends PrintJob {
     }
 
     @Override
-    public String getTemplateName() {
-        return productType.defaultTemplate;
+    public String getTemplateId() {
+        return productType.getDefaultTemplate();
     }
 
     @Override
     JSONObject getJSONRepresentation() {
-        if (isPostCard == true){
-            PostcardPrintJob job = new PostcardPrintJob(templateId,assets.get(0),null,message,postCardAddress,location1,location2);
-            try {
-                return job.getJson();
-            } catch (JSONException e) {
-                e.printStackTrace();
-                return null;
-            }
-        } else {
-
-
-            JSONArray assets = new JSONArray();
-            for (Asset a : this.assets) {
-                assets.put("" + a.getId());
-            }
-
-            JSONObject json = new JSONObject();
-            try {
-                json.put("template_id", productType.defaultTemplate);
-                json.put("assets", assets);
-                json.put("frame_contents", new JSONObject());
-            } catch (JSONException ex) {
-                throw new RuntimeException(ex); // this should NEVER happen :)
-            }
-            return json;
+        JSONArray assets = new JSONArray();
+        for (Asset a : this.assets) {
+            assets.put("" + a.getId());
         }
+
+        JSONObject json = new JSONObject();
+        try {
+            json.put("template_id", productType.getDefaultTemplate());
+            json.put("assets", assets);
+            json.put("frame_contents", new JSONObject());
+        } catch (JSONException ex) {
+            throw new RuntimeException(ex); // this should NEVER happen :)
+        }
+
+        return json;
     }
 
     @Override
@@ -122,7 +100,7 @@ class PrintsPrintJob extends PrintJob {
 
     @Override
     public void writeToParcel(Parcel parcel, int flags) {
-        parcel.writeString(productType.defaultTemplate);
+        parcel.writeString(productType.getDefaultTemplate());
         parcel.writeTypedList(assets);
 
     }
@@ -146,7 +124,7 @@ class PrintsPrintJob extends PrintJob {
     };
 
     private void writeObject(java.io.ObjectOutputStream out) throws IOException {
-        out.writeObject(productType.defaultTemplate);
+        out.writeObject(productType.getDefaultTemplate());
         out.writeInt(assets.size());
         for (Asset a : assets) {
             out.writeObject(a);

@@ -19,6 +19,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 19
+        versionName project.VERSION_NAME
+        versionCode Integer.parseInt(project.VERSION_CODE)
     }
 
     sourceSets {
@@ -31,15 +33,27 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v13:+'
     compile files('libs/PayPalAndroidSDK.jar')
     compile files('libs/CardIONativeLibs.jar')
     // To generate this jar containing shared libraries see: http://ivansotof.com/2013/12/including-native-so-libraries-in-android/
     compile 'com.google.code.gson:gson:2.3.1'
     //    compile 'com.viewpagerindicator:library:2.4.1'
     compile 'com.viewpagerindicator:library:2.4.1'
+
+
 }
 
-//apply from: '../maven_push.gradle'
+// Apply chrisbanes' excellent gradle-mvn-push recipe,
+// which lets us publish the build artifacts to maven
+// without *writing a single line of XML.*
+//
+// N.B.: We're using a specific commit from a fork to
+// work around a bug in the recipe caused by the new
+// version of gradle which hasn't been upstreamed yet.
+apply from: 'https://raw.github.com/shamanland/gradle-mvn-push/cc18d56549cdea03f744b6fff27911569394073e/gradle-mvn-push.gradle'
+//
+// Revert to this version once chrisbanes/gradle-mvn-push#29
+// is merged.
+// apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
 
 

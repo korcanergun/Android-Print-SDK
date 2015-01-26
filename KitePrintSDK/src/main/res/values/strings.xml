@@ -21,5 +21,6 @@
     <string name="country_search_hint">Search Addresses</string>
     <string name="title_activity_product_selection">ProductSelectionActivity</string>
     <string name="title_activity_product_description">ProductDescriptionActivity</string>
+    <string name="title_activity_template_sync">TemplateSyncActivity</string>
 
 </resources>

@@ -100,6 +100,7 @@
             android:name="io.card.payment.DataEntryActivity"
             android:theme="@style/AppTheme" />
         <activity
+
             android:name=".ui.ProductSelectionActivity"
             android:label="@string/title_activity_product_selection" >
         </activity>
@@ -107,6 +108,8 @@
             android:name=".ui.ProductDescriptionActivity"
             android:label="@string/title_activity_product_description" >
         </activity>
+
+
     </application>
 
 </manifest>
