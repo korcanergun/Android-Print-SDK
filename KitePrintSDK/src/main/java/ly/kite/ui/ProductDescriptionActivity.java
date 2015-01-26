@@ -8,9 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import ly.kite.R;
 
@@ -19,7 +17,6 @@ public class ProductDescriptionActivity extends Activity {
 
 
     private ViewPager viewPager;
-
 
 
     @Override
@@ -98,7 +95,7 @@ public class ProductDescriptionActivity extends Activity {
 
         @Override
         public boolean isViewFromObject(View view, Object object) {
-            return view == ((RelativeLayout) object);
+            return view == ((ImageView) object);
         }
 
         @Override

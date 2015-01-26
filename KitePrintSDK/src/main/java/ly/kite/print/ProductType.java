@@ -3,17 +3,17 @@ package ly.kite.print;
 /**
  * Created by deonbotha on 09/02/2014.
  */
-public enum ProductType {
+public enum  ProductType {
 
     POSTCARD("ps_postcard", "Postcard"),
-    POLAROIDS("polaroids", "Polaroid Style Prints"),
-    MINI_POLAROIDS("polaroids_mini", "Mini Polaroid Style Prints"),
+    POLAROIDS("polaroids", "Polaroid Style"),
+    MINI_POLAROIDS("polaroids_mini", "Mini Polaroid Style"),
     SQUARES("squares", "Square Prints"),
-    MINI_SQUARES("squares_mini", "Mini Square Prints"),
+    MINI_SQUARES("squares_mini", "Mini Squares"),
     MAGNETS("magnets", "Magnets"),
     SQUARE_STICKERS("stickers_square","Square Stickers"),
     CIRCLE_STICKERS("stickers_circle","Circle Stickers"),
-    GREETINGS_CARDS("greeting_cards","Circle Greeting Cards"),
+    GREETINGS_CARDS("greeting_cards","Greeting Cards"),
 
     /* Frames */
     FRAMES_1X1_20CM("frames_20cm","Frame 20cm"),
@@ -32,7 +32,7 @@ public enum ProductType {
     /* Legacy Frames */
     FRAMES_2x2("frames_2x2","2x2 Frame"),
 
-    PHOTOS_4x6("photos_4x6","Circle Greeting Cards"),
+    PHOTOS_4x6("photos_4x6","4x6 Photos"),
     POSTER_A1("a1_poster","A1 Collage (54)"),
     POSTER_A1_35CM("a1_poster_35","A1 Collage (54)"),
     POSTER_A1_54CM("a1_poster_54","A1 Collage (54)"),
@@ -124,4 +124,108 @@ public enum ProductType {
     @Override public String toString() {
         return getProductName();
     }
+
+
+
+
+    public static String getProductSelectionListImageURL(ProductType type){
+
+        String url = "https://s3.amazonaws.com/sdk-static/";
+        String product = "";
+        String jpg = ".jpg";
+        switch (type) {
+            case POSTCARD:
+                product = "postcards";
+                break;
+            case POLAROIDS:
+                product = "polaroids";
+                break;
+            case MINI_POLAROIDS:
+                product = "petite-polaroids";
+                break;
+            case SQUARES:
+                product = "squares";
+                break;
+            case MINI_SQUARES:
+                product = "mini-squares";
+                break;
+            case MAGNETS:
+                product = "magnets";
+                break;
+            case SQUARE_STICKERS:
+                product = "landscape-square-stickers-notext";
+                break;
+            case CIRCLE_STICKERS:
+                product = "landscape-circle-stickers-notext";
+                break;
+            case GREETINGS_CARDS:
+                product = "";
+                break;
+            case FRAMES_1X1_20CM:
+                product = "frames";
+                break;
+            case FRAMES_1X1_30CM:
+                product = "frames";
+                break;
+            case FRAMES_1X1_50CM:
+                product = "frames";
+                break;
+            case FRAMES_2x2_20CM:
+                product = "frames";
+                break;
+            case FRAMES_2x2_30CM:
+                product = "frames";
+                break;
+            case FRAMES_2x2_50CM:
+                product = "frames";
+                break;
+            case FRAMES_3x3_30CM:
+                product = "frames";
+                break;
+            case FRAMES_3x3_50CM:
+                product = "frames";
+                break;
+            case FRAMES_4x4_50CM:
+                product = "frames";
+                break;
+            case FRAMES_2x2:
+                product = "frames";
+                break;
+            case PHOTOS_4x6:
+                product = "frames";
+                break;
+            case POSTER_A1:
+                product = "posters";
+                break;
+            case POSTER_A1_35CM:
+                product = "posters";
+                break;
+            case POSTER_A1_54CM:
+                product = "posters";
+                break;
+            case POSTER_A1_70CM:
+                product = "posters";
+                break;
+            case POSTER_A2:
+                product = "posters";
+                break;
+            case POSTER_A2_35:
+                product = "posters";
+                break;
+            case POSTER_A2_54:
+                product = "posters";
+                break;
+            case POSTER_A2_70:
+                product = "posters";
+                break;
+        };
+
+
+
+
+        return  url+product+jpg;
+
+    }
+
+
 }

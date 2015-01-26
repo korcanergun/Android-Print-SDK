@@ -39,6 +39,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3.1'
     //    compile 'com.viewpagerindicator:library:2.4.1'
     compile 'com.viewpagerindicator:library:2.4.1'
+    compile 'com.squareup.picasso:picasso:2.4.0'
 
 
 }

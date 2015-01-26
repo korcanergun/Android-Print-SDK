@@ -2,6 +2,7 @@ package ly.kite.ui;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import ly.kite.R;
@@ -23,10 +27,7 @@ public class ProductSelectionActivity extends Activity {
 
     private ListView listView;
     private ProductsListViewAdapter adapter;
-
     private ArrayList<Product> products;
-
-
 
     private void createSupportedProducts(){
 
@@ -36,14 +37,9 @@ public class ProductSelectionActivity extends Activity {
         Product polsxs = new Product(ProductType.MINI_POLAROIDS, R.drawable.home_pol_xs);
         Product mini_squares = new Product(ProductType.MINI_SQUARES, R.drawable.home_squaresxs);
         Product squares = new Product(ProductType.SQUARES, R.drawable.home_squaresxs);
-        Product frames = new Product(ProductType.FRAMES, R.drawable.home_squaresxs);
-        Product posters = new Product(ProductType.A1_POSTER, R.drawable.home_squaresxs);
+        Product frames = new Product(ProductType.FRAMES_1X1_20CM, R.drawable.home_squaresxs);
+        Product posters = new Product(ProductType.POSTER_A1_35CM , R.drawable.home_squaresxs);
         Product circle_stickers = new Product(ProductType.CIRCLE_STICKERS, R.drawable.home_squaresxs);
-
-
-
-
-
 
         products = new ArrayList<Product>();
         products.add(mini_squares);
@@ -73,14 +69,17 @@ public class ProductSelectionActivity extends Activity {
                 Log.i("Selected Row", item.getType().getDefaultTemplate());
 
 
-
-                if (item.getType() == ProductType.A1_POSTER){
-
-
+                Intent intent = new Intent(ProductSelectionActivity.this, ProductDescriptionActivity.class);
+                startActivity(intent);
 
 
+                if (item.getType() == ProductType.POSTER_A1_35CM){
 
-                }else if (item.getType() == ProductType.FRAMES){
+
+
+
+
+                }else if (item.getType() == ProductType.FRAMES_1X1_20CM){
 
 
 
@@ -196,8 +195,8 @@ public class ProductSelectionActivity extends Activity {
 
             ViewHolder holder = (ViewHolder) rowView.getTag();
 
-            holder.image.setImageDrawable(ctx.getResources().getDrawable(items.get(position).getImageDrawable()));
-
+           // holder.image.setImageDrawable(ctx.getResources().getDrawable(items.get(position).getImageDrawable()));
+            Picasso.with(ProductSelectionActivity.this).load(ProductType.getProductSelectionListImageURL(items.get(position).getType())).into(holder.image);
             holder.image.setOnClickListener(new View.OnClickListener() {
 
                 @Override
