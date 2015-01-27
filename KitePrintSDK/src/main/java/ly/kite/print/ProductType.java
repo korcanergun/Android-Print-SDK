@@ -134,11 +134,8 @@ public enum  ProductType {
     }
 
 
-
-
     private static String S3StaticFolderBaseURL ="https://s3.amazonaws.com/sdk-static/" ;
-
-
+    
     public static String getProductSelectionListImageURL(ProductType type){
 
         String product = "";
@@ -235,27 +232,17 @@ public enum  ProductType {
                 product = "posters";
                 break;
         };
-
-
-
-
         return  S3StaticFolderBaseURL+product+jpg;
-
     }
-
-
 
     public static String[] getProductDescriptionCarouselImageURLs(ProductType type){
 
-
         String baseURL = S3StaticFolderBaseURL + "android/";
-
         String url1 = baseURL + type.getDefaultTemplate() + "_1.jpg";
         String url2 = baseURL + type.getDefaultTemplate() + "_2.jpg";
 
         String[] imageURLS = {url1,url2};
         return imageURLS;
-
     }
 
 
