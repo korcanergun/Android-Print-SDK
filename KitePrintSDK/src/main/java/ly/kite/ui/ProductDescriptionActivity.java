@@ -10,13 +10,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 import ly.kite.R;
+import ly.kite.print.PrintOrder;
+import ly.kite.print.ProductType;
 
 public class ProductDescriptionActivity extends Activity {
 
 
 
     private ViewPager viewPager;
+    private ProductType productType;
 
 
     @Override
@@ -24,12 +29,14 @@ public class ProductDescriptionActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_description);
 
+        this.productType = ProductType.productTypeFromTemplate(getIntent().getStringExtra("template_id"));
+
 
         viewPager = (ViewPager)findViewById(R.id.product_viewpager);
 
         int[] images = new int[] { R.drawable.home_mags,R.drawable.home_squaresxs};
 
-        ViewPagerAdapter adapter = new ViewPagerAdapter(images);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(ProductType.getProductDescriptionCarouselImageURLs(productType));
 
 
         viewPager.setAdapter(adapter);
@@ -68,6 +75,8 @@ public class ProductDescriptionActivity extends Activity {
 
     public class ViewPagerAdapter extends PagerAdapter{
 
+        private final String[] urls;
+
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             ImageView imageView = new ImageView(ProductDescriptionActivity.this);
@@ -75,15 +84,16 @@ public class ProductDescriptionActivity extends Activity {
             // int padding = ssContext.getResources().getDimensionPixelSize(0x7f040002);
             imageView.setPadding(0, 0, 0, 0);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            imageView.setImageResource(drawables[position]);
-            ((ViewPager) container).addView(imageView, 0);
+
+            Picasso.with(ProductDescriptionActivity.this).load(urls[position]).into(imageView);
+
+                    ((ViewPager) container).addView(imageView, 0);
             return imageView;
         }
 
-        private int[] drawables;
 
-        public ViewPagerAdapter(int[] drawables) {
-            this.drawables = drawables;
+        public ViewPagerAdapter(String[] urls) {
+            this.urls = urls;
 
         }
 

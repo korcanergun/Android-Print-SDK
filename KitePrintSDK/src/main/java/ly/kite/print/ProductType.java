@@ -8,7 +8,7 @@ public enum  ProductType {
     POSTCARD("ps_postcard", "Postcard"),
     POLAROIDS("polaroids", "Polaroid Style"),
     MINI_POLAROIDS("polaroids_mini", "Mini Polaroid Style"),
-    SQUARES("squares", "Square Prints"),
+    SQUARES("squares", "Squares"),
     MINI_SQUARES("squares_mini", "Mini Squares"),
     MAGNETS("magnets", "Magnets"),
     SQUARE_STICKERS("stickers_square","Square Stickers"),
@@ -28,6 +28,10 @@ public enum  ProductType {
     FRAMES_3x3_50CM("frames_50cm_3x3","Frame 30cm (3x3)"),
 
     FRAMES_4x4_50CM("frames_50cm_4x4","Frame 30cm (4x4)"),
+
+    POSTERS_GENERAL("posters", "Posters"),
+    Frames_General("frames", "Frames"),
+
 
     /* Legacy Frames */
     FRAMES_2x2("frames_2x2","2x2 Frame"),
@@ -112,6 +116,10 @@ public enum  ProductType {
             return POSTER_A2_54;
         } else if (template.equals(POSTER_A2_70.defaultTemplate)) {
             return POSTER_A2_70;
+        }else if (template.equals(POSTERS_GENERAL.defaultTemplate)) {
+            return POSTERS_GENERAL;
+        }else if (template.equals(Frames_General.defaultTemplate)) {
+            return Frames_General;
         }
 
         throw new IllegalArgumentException("Unrecognized template: " + template);
@@ -128,9 +136,11 @@ public enum  ProductType {
 
 
 
+    private static String S3StaticFolderBaseURL ="https://s3.amazonaws.com/sdk-static/" ;
+
+
     public static String getProductSelectionListImageURL(ProductType type){
 
-        String url = "https://s3.amazonaws.com/sdk-static/";
         String product = "";
         String jpg = ".jpg";
         switch (type) {
@@ -188,6 +198,12 @@ public enum  ProductType {
             case FRAMES_4x4_50CM:
                 product = "frames";
                 break;
+            case POSTERS_GENERAL:
+                product = "posters";
+                break;
+            case Frames_General:
+                product = "frames";
+                break;
             case FRAMES_2x2:
                 product = "frames";
                 break;
@@ -223,7 +239,22 @@ public enum  ProductType {
 
 
 
-        return  url+product+jpg;
+        return  S3StaticFolderBaseURL+product+jpg;
+
+    }
+
+
+
+    public static String[] getProductDescriptionCarouselImageURLs(ProductType type){
+
+
+        String baseURL = S3StaticFolderBaseURL + "android/";
+
+        String url1 = baseURL + type.getDefaultTemplate() + "_1.jpg";
+        String url2 = baseURL + type.getDefaultTemplate() + "_2.jpg";
+
+        String[] imageURLS = {url1,url2};
+        return imageURLS;
 
     }
 

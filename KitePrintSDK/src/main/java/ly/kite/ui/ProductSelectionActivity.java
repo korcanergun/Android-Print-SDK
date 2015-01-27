@@ -31,14 +31,17 @@ public class ProductSelectionActivity extends Activity {
 
     private void createSupportedProducts(){
 
+        // TODO: The Product Class was used when the drawables were stored locally. As it is now dynamically pulled from S3. Can (should) be removed now.
+
+
         Product magnets = new Product(ProductType.MAGNETS, R.drawable.home_mags);
         Product square_stickers = new Product(ProductType.SQUARE_STICKERS, R.drawable.home_stickers);
         Product pols = new Product(ProductType.POLAROIDS, R.drawable.home_pols);
         Product polsxs = new Product(ProductType.MINI_POLAROIDS, R.drawable.home_pol_xs);
         Product mini_squares = new Product(ProductType.MINI_SQUARES, R.drawable.home_squaresxs);
         Product squares = new Product(ProductType.SQUARES, R.drawable.home_squaresxs);
-        Product frames = new Product(ProductType.FRAMES_1X1_20CM, R.drawable.home_squaresxs);
-        Product posters = new Product(ProductType.POSTER_A1_35CM , R.drawable.home_squaresxs);
+        Product frames = new Product(ProductType.Frames_General, R.drawable.home_squaresxs);
+        Product posters = new Product(ProductType.POSTERS_GENERAL , R.drawable.home_squaresxs);
         Product circle_stickers = new Product(ProductType.CIRCLE_STICKERS, R.drawable.home_squaresxs);
 
         products = new ArrayList<Product>();
@@ -70,6 +73,7 @@ public class ProductSelectionActivity extends Activity {
 
 
                 Intent intent = new Intent(ProductSelectionActivity.this, ProductDescriptionActivity.class);
+                intent.putExtra("template_id", item.getType().getDefaultTemplate());
                 startActivity(intent);
 
 
