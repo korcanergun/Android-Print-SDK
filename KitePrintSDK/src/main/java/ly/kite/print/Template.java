@@ -141,68 +141,13 @@ public class Template implements Parcelable, Serializable {
         });
     }
 
-//<<<<<<< HEAD
-//    public static int getSyncedTemplateNumberOfImages(String template_id) {
-//
-//        SharedPreferences settings = KitePrintSDK.getAppContext().getSharedPreferences("ly.kite.sharedpreferences", 0);
-//        SharedPreferences.Editor editor = settings.edit();
-//        Gson gson = new Gson();
-//        String json = settings.getString(template_id, "");
-//        Template template = gson.fromJson(json, Template.class);
-//        return template.getImages_per_page();
-//    }
-//
-//    public static String getSupportedCurrency(){
-//
-//            String userCurrencyCode = KitePrintSDK.getUserCurrencyCode();
-//            if(userCurrencyCode.equals("GBP")) {
-//                return userCurrencyCode;
-//
-//            }else if(userCurrencyCode.equals("EUR")){
-//                return userCurrencyCode;
-//
-//            }else if(userCurrencyCode.equals("USD")){
-//                return userCurrencyCode;
-//            }else if(userCurrencyCode.equals("SGD")){
-//                return userCurrencyCode;
-//            }else if(userCurrencyCode.equals("AUD")){
-//                return userCurrencyCode;
-//            }else if(userCurrencyCode.equals("NZD")){
-//                return userCurrencyCode;
-//            }else if(userCurrencyCode.equals("CAD")){
-//                return userCurrencyCode;
-//            } else {
-//                return "GBP";
-//            }
-//=======
     public static boolean isSyncInProgress() {
         return inProgressSyncReq != null;
-//>>>>>>> master
     }
 
     private static void persistTemplatesToDiskAsLatest(Context context, List<Template> templates) {
         syncedTemplates = templates;
         lastSyncDate = new Date();
-
-//<<<<<<< HEAD
-//        String userCurrencyCode = getSupportedCurrency();
-//        if(userCurrencyCode.equals("GBP")) {
-//            return PayPalCard.Currency.GBP;
-//        }else if(userCurrencyCode.equals("EUR")){
-//            return PayPalCard.Currency.EUR;
-//        }else if(userCurrencyCode.equals("USD")){
-//            return PayPalCard.Currency.USD;
-//        }else if(userCurrencyCode.equals("SGD")){
-//            return PayPalCard.Currency.SGD;
-//        }else if(userCurrencyCode.equals("AUD")){
-//            return PayPalCard.Currency.AUD;
-//        }else if(userCurrencyCode.equals("NZD")){
-//            return PayPalCard.Currency.NZD;
-//        }else if(userCurrencyCode.equals("CAD")){
-//            return PayPalCard.Currency.CAD;
-//        } else {
-//            return PayPalCard.Currency.GBP;
-//=======
         // Write sync date
         SharedPreferences settings = context.getSharedPreferences(KitePrintSDK.KITE_SHARED_PREFERENCES, 0);
         SharedPreferences.Editor editor = settings.edit();

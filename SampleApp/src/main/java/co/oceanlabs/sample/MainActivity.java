@@ -108,7 +108,6 @@ public class MainActivity extends Activity {
         }
 
         KitePrintSDK.initialize(apiKey, env, getApplicationContext());
-
         ProductType productType = (ProductType) productSpinner.getSelectedItem();
         PrintOrder printOrder = new PrintOrder();
         if (productType == ProductType.POSTCARD) {
