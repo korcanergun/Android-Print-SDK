@@ -32,7 +32,7 @@ public class ProductSelectionActivity extends Activity {
     private void createSupportedProducts(){
 
         // TODO: The Product Class was used when the drawables were stored locally. As it is now dynamically pulled from S3. Can (should) be removed now.
-
+        // TODO: The Title background is set to Blue for all products, on iOS this is hard coded for each product. Either replicate that or add this to the Template.
 
         Product magnets = new Product(ProductType.MAGNETS, R.drawable.home_mags);
         Product square_stickers = new Product(ProductType.SQUARE_STICKERS, R.drawable.home_stickers);

@@ -19,6 +19,9 @@ import ly.kite.print.ProductType;
 public class ProductDescriptionActivity extends Activity {
 
 
+    //TODO: Add ViewPagerIndicator To this.
+    //TODO: Add a getIntent to keep the photos to be printed along the journey.
+
 
     private ViewPager viewPager;
     private ProductType productType;
@@ -26,25 +29,17 @@ public class ProductDescriptionActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_description);
 
         this.productType = ProductType.productTypeFromTemplate(getIntent().getStringExtra("template_id"));
-
-
         viewPager = (ViewPager)findViewById(R.id.product_viewpager);
 
         int[] images = new int[] { R.drawable.home_mags,R.drawable.home_squaresxs};
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(ProductType.getProductDescriptionCarouselImageURLs(productType));
-
-
         viewPager.setAdapter(adapter);
-
-
-
-
-
     }
 
 
@@ -70,33 +65,26 @@ public class ProductDescriptionActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-
-
-
     public class ViewPagerAdapter extends PagerAdapter{
 
         private final String[] urls;
-
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             ImageView imageView = new ImageView(ProductDescriptionActivity.this);
 
             // int padding = ssContext.getResources().getDimensionPixelSize(0x7f040002);
             imageView.setPadding(0, 0, 0, 0);
-            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             Picasso.with(ProductDescriptionActivity.this).load(urls[position]).into(imageView);
 
                     ((ViewPager) container).addView(imageView, 0);
             return imageView;
         }
 
-
         public ViewPagerAdapter(String[] urls) {
             this.urls = urls;
 
         }
-
 
         @Override
         public int getCount() {
@@ -114,9 +102,5 @@ public class ProductDescriptionActivity extends Activity {
             ((ViewPager) ssContainer).removeView((ImageView) ssObject);
         }
     }
-
-
-
-
 
 }
