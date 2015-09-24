@@ -8,12 +8,27 @@
     android:padding="20dp"
     android:orientation="vertical">
 
-    <ly.kite.widget.FramedImageView
-        android:id="@+id/framed_image_view"
+    <FrameLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        custom:aspectRatio="@dimen/review_and_crop_image_aspect_ratio"
-        android:background="@android:color/white"/>
+        android:layout_height="wrap_content">
+
+        <ly.kite.widget.FramedImageView
+            android:id="@+id/framed_image_view"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            custom:aspectRatio="@dimen/review_and_crop_image_aspect_ratio"
+            android:background="@android:color/white"/>
+
+        <ImageView
+            android:id="@+id/overlay_image_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:adjustViewBounds="true"
+            android:visibility="gone"
+            android:src="@drawable/jigsaw_overlay"
+            android:background="@android:color/transparent"/>
+
+    </FrameLayout>
 
     <LinearLayout
         android:layout_marginTop="10dp"

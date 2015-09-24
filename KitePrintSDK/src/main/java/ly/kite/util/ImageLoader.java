@@ -65,7 +65,7 @@ public class ImageLoader
   @SuppressWarnings( "unused" )
   private static final String  LOG_TAG           = "ImageLoader";
 
-  private static final int     MAX_BITMAP_PIXELS = 6000000;  // 6MP = 3000 x 2000
+  private static final int     MAX_BITMAP_PIXELS = 4000000;  // 4MP = 2000 x 2000
 
 
   ////////// Static Variable(s) //////////
@@ -427,7 +427,6 @@ public class ImageLoader
             bitmapPixels = width * height;
             }
 
-
           // Decode the bitmap using the calculated sample size
 
           bitmapFactoryOptions = new BitmapFactory.Options();
@@ -447,7 +446,6 @@ public class ImageLoader
           bitmapFactoryOptions.mCancel                  = false;
 
           Bitmap bitmap = request.decodeBitmap( bitmapFactoryOptions );
-
 
           // Perform any transformation
 

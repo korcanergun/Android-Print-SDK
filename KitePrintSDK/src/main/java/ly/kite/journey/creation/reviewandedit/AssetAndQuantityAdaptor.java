@@ -45,6 +45,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -201,6 +202,12 @@ public class AssetAndQuantityAdaptor extends BaseAdapter
       viewReferences.framedImageView.setImageAspectRatio( mProduct.getImageAspectRatio() );
 
       view.setTag( viewReferences );
+
+      if ( mProduct.getId().equals("s9_jigsaw"))
+        {
+        ImageView overlayView = (ImageView) view.findViewById(R.id.overlay_image_view);
+        overlayView.setVisibility(View.VISIBLE);
+        }
       }
 
 

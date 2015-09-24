@@ -453,24 +453,12 @@ public class ProductOverviewFragment extends AKiteFragment implements View.OnCli
 
     if ( isVisible( shippingTextView ) )
       {
-      List<SingleDestinationShippingCost> sortedShippingCostList = mProduct.getSortedShippingCosts( country );
 
       StringBuilder shippingCostsStringBuilder = new StringBuilder();
 
-      String newlineString = "";
+       // Get the cost in the default currency for the locale, and format the amount.
 
-      for ( SingleDestinationShippingCost singleDestinationShippingCost : sortedShippingCostList )
-        {
-        // We want to prepend a new line for every shipping destination except the first
-
-        shippingCostsStringBuilder.append( newlineString );
-
-        newlineString = "\n";
-
-
-        // Get the cost in the default currency for the locale, and format the amount.
-
-        singleCurrencyCost = singleDestinationShippingCost.getCost().getDefaultAmountWithFallback();
+        singleCurrencyCost = mProduct.getShippingCost(Country.UK).getAmountWithFallback("GBP");
 
         if ( singleCurrencyCost != null )
           {
@@ -481,11 +469,10 @@ public class ProductOverviewFragment extends AKiteFragment implements View.OnCli
                   : getString( R.string.product_free_shipping ) );
 
           shippingCostsStringBuilder
-                  .append( String.format( formatString, singleDestinationShippingCost.getDestinationDescription( mKiteActivity ), costString ) );
+                  .append( String.format( formatString, "UK", costString ) );
           }
 
         shippingTextView.setText( shippingCostsStringBuilder.toString() );
-        }
       }
 
 

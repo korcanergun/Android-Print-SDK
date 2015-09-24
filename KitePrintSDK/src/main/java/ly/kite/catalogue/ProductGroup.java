@@ -48,7 +48,9 @@ import android.os.Parcelable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Currency;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 /*****************************************************
  *
@@ -115,7 +117,7 @@ public class ProductGroup implements Parcelable, IGroupOrProduct
     mImageURL    = (URL)sourceParcel.readSerializable();
 
     mProductList = new ArrayList<>();
-    sourceParcel.readTypedList( mProductList, Product.CREATOR );
+    sourceParcel.readTypedList(mProductList, Product.CREATOR);
     }
 
 
@@ -207,9 +209,23 @@ public class ProductGroup implements Parcelable, IGroupOrProduct
    *****************************************************/
   public String getDisplayPrice()
     {
+      Set<String> availableCurrencyCodes = mProductList.isEmpty()
+              ? new HashSet<String>()
+              : mProductList.get(0).getCurrenciesSupported();
+      for ( Product product : mProductList )
+      {
+        availableCurrencyCodes.retainAll( product.getCurrenciesSupported() );
+      }
+
+      if (availableCurrencyCodes.isEmpty()) {
+        return ""; // TODO: should never happen
+      }
+
     Locale locale       = Locale.getDefault();
     String currencyCode = Currency.getInstance( locale ).getCurrencyCode();
-
+    if (!availableCurrencyCodes.contains(currencyCode)) {
+      currencyCode = availableCurrencyCodes.iterator().next();
+    }
 
     // We don't want to mess around with trying to compare prices in different
     // currencies, so just try and get prices for the local currency.
