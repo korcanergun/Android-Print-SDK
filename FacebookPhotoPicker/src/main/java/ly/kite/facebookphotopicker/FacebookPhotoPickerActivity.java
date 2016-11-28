@@ -137,6 +137,19 @@ public class FacebookPhotoPickerActivity extends AImagePickerActivity implements
     fragment.startActivityForResult( intent, activityRequestCode );
     }
 
+  /*****************************************************
+   *
+   * Starts this activity, returning the result to a calling
+   * fragment.
+   *
+   *****************************************************/
+  static public void startForResult( android.support.v4.app.Fragment fragment, int maxImageCount, int activityRequestCode )
+    {
+    Intent intent = getIntent( fragment.getActivity(), maxImageCount );
+
+    fragment.startActivityForResult( intent, activityRequestCode );
+    }
+
 
   ////////// Constructor(s) //////////
 
